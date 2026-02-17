@@ -2,6 +2,7 @@
 classDiagram
     direction TB
 
+    %% Definición de la Superclase
     class ID {
         <<abstract>>
         - int id
@@ -32,11 +33,11 @@ classDiagram
         - double precio
     }
 
-    %% Relación de Herencia (Especialización)
+    %% Relación de Herencia: Cliente y Pedido EXTIENDEN de ID
     ID <|-- Cliente
     ID <|-- Pedido
 
-    %% Otras Relaciones
-    Cliente "1" o-- "0..*" Pedido : Agregación
-    Pedido "1" *-- "1..*" LineaPedido : Composición
-    LineaPedido "0..*" --> "1" Producto : Asociación
+    %% Relaciones de Agregación y Composición
+    Cliente "1" o-- "0..*" Pedido : tiene/mantiene
+    Pedido "1" *-- "1..*" LineaPedido : compuesto por
+    LineaPedido "0..*" --> "1" Producto : referencia a
